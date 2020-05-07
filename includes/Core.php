@@ -23,5 +23,6 @@ class core {
 
 	public function load_modules() {
 		new PostFeedChannel();
+		new PostFeedItem();
 	}
 }
