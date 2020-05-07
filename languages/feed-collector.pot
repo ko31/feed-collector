@@ -1,0 +1,81 @@
+# Copyright (C) 2020 ko31
+# This file is distributed under the same license as the Feed Collector package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Feed Collector 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/feed-collector\n"
+"POT-Creation-Date: 2020-05-07 07:26:16+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: grunt-wp-i18n 1.0.3\n"
+
+#: includes/PostFeedChannel.php:23
+msgid "Feed Channel"
+msgstr ""
+
+#: includes/PostFeedChannel.php:41
+msgid "Feed Category"
+msgstr ""
+
+#: includes/PostFeedChannel.php:59
+msgid "Feed Channel Details"
+msgstr ""
+
+#: includes/PostFeedChannel.php:151
+msgid "URL"
+msgstr ""
+
+#: includes/PostFeedChannel.php:155
+msgid "Input feed url"
+msgstr ""
+
+#: includes/PostFeedChannel.php:159
+msgid "Limit"
+msgstr ""
+
+#: includes/PostFeedChannel.php:167
+msgid "Excluded keywords"
+msgstr ""
+
+#: includes/PostFeedChannel.php:171
+msgid "Input excluded keywords"
+msgstr ""
+
+#: includes/PostFeedChannel.php:172
+msgid "If you have more than one keyword, please enter them separated by commas."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Feed Collector"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/ko31/feed-collector"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "This is a plugin."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "ko31"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://go-sign.info"
+msgstr ""

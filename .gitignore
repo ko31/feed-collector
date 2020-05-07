@@ -1,0 +1,16 @@
+# OS or Editor
+.DS_Store
+Thumbs.db
+*.swo
+*.swp
+*~
+.idea
+phpcs.xml
+phpunit.xml
+
+# npm packages
+node_modules/
+
+# composer packages
+vendor/
+composer.lock
