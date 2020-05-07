@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Feed Collector 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/feed-collector\n"
-"POT-Creation-Date: 2020-05-07 07:26:16+00:00\n"
+"POT-Creation-Date: 2020-05-07 10:29:53+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,44 +24,92 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 
-#: includes/PostFeedChannel.php:23
-msgid "Feed Channel"
+#: includes/Admin.php:19 includes/Admin.php:42
+msgid "Feed Collector Settings"
 msgstr ""
 
-#: includes/PostFeedChannel.php:41
-msgid "Feed Category"
+#: includes/Admin.php:20
+msgid "Settings"
 msgstr ""
 
-#: includes/PostFeedChannel.php:59
-msgid "Feed Channel Details"
+#: includes/Admin.php:34
+msgid "General Settings"
 msgstr ""
 
-#: includes/PostFeedChannel.php:151
-msgid "URL"
-msgstr ""
-
-#: includes/PostFeedChannel.php:155
-msgid "Input feed url"
-msgstr ""
-
-#: includes/PostFeedChannel.php:159
-msgid "Limit"
-msgstr ""
-
-#: includes/PostFeedChannel.php:167
-msgid "Excluded keywords"
-msgstr ""
-
-#: includes/PostFeedChannel.php:171
-msgid "Input excluded keywords"
-msgstr ""
-
-#: includes/PostFeedChannel.php:172
-msgid "If you have more than one keyword, please enter them separated by commas."
+#: includes/PostFeedChannel.php:26 includes/PostFeedChannel.php:27
+msgid "Feed Channels"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
 msgid "Feed Collector"
+msgstr ""
+
+#: includes/PostFeedChannel.php:47
+msgid "Feed Category"
+msgstr ""
+
+#: includes/PostFeedChannel.php:65
+msgid "Feed Channel Details"
+msgstr ""
+
+#: includes/PostFeedChannel.php:80
+msgid "URL"
+msgstr ""
+
+#: includes/PostFeedChannel.php:84
+msgid "Input feed url"
+msgstr ""
+
+#: includes/PostFeedChannel.php:88
+msgid "Limit"
+msgstr ""
+
+#: includes/PostFeedChannel.php:96
+msgid "Excluded keywords"
+msgstr ""
+
+#: includes/PostFeedChannel.php:100
+msgid "Input excluded keywords"
+msgstr ""
+
+#: includes/PostFeedChannel.php:101
+msgid "If you have more than one keyword, please enter them separated by commas."
+msgstr ""
+
+#: includes/PostFeedItem.php:23
+msgid "Feed Items"
+msgstr ""
+
+#: includes/PostFeedItem.php:45
+msgid "Feed Item Details"
+msgstr ""
+
+#: includes/PostFeedItem.php:60
+msgid "Feed channel id"
+msgstr ""
+
+#: includes/PostFeedItem.php:67
+msgid "Published date"
+msgstr ""
+
+#: includes/PostFeedItem.php:74
+msgid "Updated date"
+msgstr ""
+
+#: includes/PostFeedItem.php:81
+msgid "Title"
+msgstr ""
+
+#: includes/PostFeedItem.php:88
+msgid "Permalink"
+msgstr ""
+
+#: includes/PostFeedItem.php:95
+msgid "Enclosure"
+msgstr ""
+
+#: includes/PostFeedItem.php:102
+msgid "Description"
 msgstr ""
 
 #. Plugin URI of the plugin/theme

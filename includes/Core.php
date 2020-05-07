@@ -22,6 +22,9 @@ class core {
 	}
 
 	public function load_modules() {
+		if ( is_admin() ) {
+			new Admin();
+		}
 		new PostFeedChannel();
 		new PostFeedItem();
 	}
