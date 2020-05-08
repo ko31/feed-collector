@@ -18,7 +18,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'FEED_COLLECTOR_VERSION', '0.1.0' );
+define( 'FEED_COLLECTOR_VERSION', '1.0.0' );
 define( 'FEED_COLLECTOR_TEXT_DOMAIN', 'feed-controller' );
 define( 'FEED_COLLECTOR_URL', plugin_dir_url( __FILE__ ) );
 define( 'FEED_COLLECTOR_PATH', plugin_dir_path( __FILE__ ) );
@@ -26,9 +26,11 @@ define( 'FEED_COLLECTOR_INC', FEED_COLLECTOR_PATH . 'includes/' );
 
 require_once( dirname( __FILE__ ) . '/vendor/autoload.php' );
 
-register_activation_hook( __FILE__, function () {
-	flush_rewrite_rules();
-} );
+require_once( dirname( __FILE__ ) . '/functions.php' );
+
+//register_activation_hook( __FILE__, function () {
+//	flush_rewrite_rules();
+//} );
 
 add_action( 'plugins_loaded', function () {
 	new Core();
