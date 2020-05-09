@@ -1,14 +1,10 @@
 <?php
 /**
- * Runs on Uninstall
+ * Runs on uninstall
  */
 
-namespace Feed_Collector;
-
-// If uninstall is not called from WordPress exit
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit ();
 }
 
-$core = new Core();
-$core->deactivation();
+delete_option( 'feed-collector-setting' );

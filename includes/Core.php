@@ -37,7 +37,6 @@ class core {
 	}
 
 	public function deactivation() {
-		delete_option( 'feed-collector' );
 		$schedule = new Schedule();
 		$schedule->clear_cron_schedule();
 	}

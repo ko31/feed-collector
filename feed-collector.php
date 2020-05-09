@@ -28,13 +28,16 @@ require_once( dirname( __FILE__ ) . '/vendor/autoload.php' );
 
 require_once( dirname( __FILE__ ) . '/functions.php' );
 
-// Run
 add_action( 'plugins_loaded', function () {
 	new Core();
 } );
 
-// Activation
 register_activation_hook( __FILE__, function () {
 	$core = new Core();
 	$core->activation();
+} );
+
+register_deactivation_hook(__FILE__, function () {
+	$core = new Core();
+	$core->deactivation();
 } );
