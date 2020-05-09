@@ -6,7 +6,7 @@ class Admin {
 
 	private $options;
 
-	private $option_name = 'feed-collector';
+	private $option_name = 'feed-collector-setting';
 
 	private $option_group = 'feed-collector-group';
 

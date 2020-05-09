@@ -6,7 +6,7 @@ class Schedule {
 
 	private $options;
 
-	private $option_name = 'feed-collector';
+	private $option_name = 'feed-collector-setting';
 
 	public function __construct() {
 		$this->run();
