@@ -57,10 +57,8 @@ class Schedule {
 	 * Run cron schedulee event.
 	 */
 	public function fc_fetch_feed() {
-
-		// TODO:
-		// Fetch feed items.
-
+		$fetch = new Fetch();
+		$fetch->fetch_feeds();
 	}
 
 	/**

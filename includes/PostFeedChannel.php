@@ -108,4 +108,26 @@ class PostFeedChannel extends BasePost {
 		 */
 		return apply_filters( 'fc_feed_channel_get_meta_fields', $fields );
 	}
+
+	/**
+	 * Getter
+	 *
+	 * @param $name
+	 *
+	 * @return string|null
+	 */
+	public function __get( $name ) {
+		switch ( $name ) {
+			case 'post_type':
+				return $this->post_type;
+				break;
+			case 'taxonomy':
+				return $this->taxonomy;
+				break;
+			default:
+				return NULL;
+				break;
+
+		}
+	}
 }

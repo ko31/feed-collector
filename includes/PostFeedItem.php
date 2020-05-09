@@ -60,7 +60,7 @@ class PostFeedItem extends BasePost {
 			'label' => __( 'Feed channel id', 'feed-collector' ),
 			'id'    => '_fc_feed_channel_id',
 			'type'  => 'text',
-			'class' => 'large-text',
+			'class' => 'small-text',
 		];
 
 		$fields['published'] = [

@@ -73,6 +73,10 @@ class Admin {
 			settings_fields( $this->option_group );
 			do_settings_sections( $this->option_group );
 			submit_button();
+
+			// TODO:TEST
+			$fetch = new Fetch();
+			$fetch->fetch_feeds();
 			?>
 		</form>
 		<?php
