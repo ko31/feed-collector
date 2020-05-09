@@ -60,7 +60,7 @@ class PostFeedItem extends BasePost {
 			'label' => __( 'Feed channel id', 'feed-collector' ),
 			'id'    => '_fc_feed_channel_id',
 			'type'  => 'text',
-			'class' => 'small-text',
+			'class' => 'large-text',
 		];
 
 		$fields['published'] = [
@@ -111,5 +111,24 @@ class PostFeedItem extends BasePost {
 		 * @param array $args
 		 */
 		return apply_filters( 'fc_feed_item_get_meta_fields', $fields );
+	}
+
+	/**
+	 * Getter
+	 *
+	 * @param $name
+	 *
+	 * @return string|null
+	 */
+	public function __get( $name ) {
+		switch ( $name ) {
+			case 'post_type':
+				return $this->post_type;
+				break;
+			default:
+				return NULL;
+				break;
+
+		}
 	}
 }
