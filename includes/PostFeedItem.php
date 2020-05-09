@@ -4,20 +4,33 @@ namespace Feed_Collector;
 
 use Feed_Collector\base\BasePost;
 
+/**
+ * Class PostFeedItem
+ * @package Feed_Collector
+ */
 class PostFeedItem extends BasePost {
 
 	private $post_type = 'fc-feed-item';
 
+	/**
+	 * PostFeedItem constructor.
+	 */
 	public function __construct() {
 		$this->run();
 	}
 
+	/**
+	 * Run.
+	 */
 	public function run() {
 		add_action( 'init', [ $this, 'init' ] );
 		add_action( 'add_meta_boxes_' . $this->post_type, [ $this, 'add_meta_boxes' ] );
 		add_action( 'save_post', [ $this, 'save_post' ], 10, 2 );
 	}
 
+	/**
+	 * Fires when init action runs.
+	 */
 	public function init() {
 		$args = [
 			'label'        => __( 'Feed Items', 'feed-collector' ),
@@ -39,6 +52,9 @@ class PostFeedItem extends BasePost {
 		register_post_type( $this->post_type, $args );
 	}
 
+	/**
+	 * Fires when add_meta_boxes action runs.
+	 */
 	public function add_meta_boxes() {
 		add_meta_box(
 			$this->post_type . '_meta_box',
@@ -114,7 +130,7 @@ class PostFeedItem extends BasePost {
 	}
 
 	/**
-	 * Getter
+	 * Getter.
 	 *
 	 * @param $name
 	 *

@@ -2,12 +2,22 @@
 
 namespace Feed_Collector;
 
+/**
+ * Class Fetch
+ * @package Feed_Collector
+ */
 class Fetch {
 
+	/**
+	 * Fetch constructor.
+	 */
 	public function __construct() {
 		//
 	}
 
+	/**
+	 * Fetch feeds.
+	 */
 	public function fetch_feeds() {
 		$post_feed_channel = new PostFeedChannel();
 

@@ -2,10 +2,17 @@
 
 namespace Feed_Collector\base;
 
+/**
+ * Class BasePost
+ * @package Feed_Collector\base
+ */
 abstract class BasePost {
 
 	private $prefix;
 
+	/**
+	 * BasePost constructor.
+	 */
 	public function __construct() {
 		$this->prefix = FEED_COLLECTOR_TEXT_DOMAIN;
 	}

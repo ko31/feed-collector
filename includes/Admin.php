@@ -2,6 +2,10 @@
 
 namespace Feed_Collector;
 
+/**
+ * Class Admin
+ * @package Feed_Collector
+ */
 class Admin {
 
 	private $options;
@@ -10,16 +14,25 @@ class Admin {
 
 	private $option_group = 'feed-collector-group';
 
+	/**
+	 * Admin constructor.
+	 */
 	public function __construct() {
 		$this->run();
 	}
 
+	/**
+	 * Run
+	 */
 	public function run() {
 		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
 		add_action( 'admin_init', [ $this, 'admin_init' ] );
 		add_action( 'updated_option', [ $this, 'updated_option' ] );
 	}
 
+	/**
+	 * Fires when admin_menu action runs.
+	 */
 	public function admin_menu() {
 		add_submenu_page(
 			'edit.php?post_type=fc-feed-channel',
@@ -31,6 +44,9 @@ class Admin {
 		);
 	}
 
+	/**
+	 * Fires when admin_init action runs.
+	 */
 	public function admin_init() {
 		register_setting(
 			$this->option_group,
@@ -53,6 +69,9 @@ class Admin {
 		);
 	}
 
+	/**
+	 * Render cron_interval field.
+	 */
 	public function cron_interval_callback() {
 		$cron_interval = isset( $this->options['cron_interval'] ) ? $this->options['cron_interval'] : '';
 		?>
@@ -64,6 +83,9 @@ class Admin {
 		<?php
 	}
 
+	/**
+	 * Render settings.
+	 */
 	public function display_settings() {
 		$this->options = get_option( $this->option_name );
 		?>
@@ -83,7 +105,7 @@ class Admin {
 	}
 
 	/**
-	 * Fires after the value of an option has been successfully updated.
+	 * Fires when updated_option action runs.
 	 *
 	 * @param $option
 	 */

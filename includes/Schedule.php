@@ -2,16 +2,26 @@
 
 namespace Feed_Collector;
 
+/**
+ * Class Schedule
+ * @package Feed_Collector
+ */
 class Schedule {
 
 	private $options;
 
 	private $option_name = 'feed-collector-setting';
 
+	/**
+	 * Schedule constructor.
+	 */
 	public function __construct() {
 		$this->run();
 	}
 
+	/**
+	 * Run.
+	 */
 	public function run() {
 		$this->options = get_option( $this->option_name );
 		add_filter( 'cron_schedules', [ $this, 'cron_schedules' ] );
@@ -54,7 +64,7 @@ class Schedule {
 	}
 
 	/**
-	 * Run cron schedulee event.
+	 * Fires when cron schedulee event runs.
 	 */
 	public function fc_fetch_feed() {
 		$fetch = new Fetch();

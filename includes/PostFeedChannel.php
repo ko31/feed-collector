@@ -4,22 +4,35 @@ namespace Feed_Collector;
 
 use Feed_Collector\base\BasePost;
 
+/**
+ * Class PostFeedChannel
+ * @package Feed_Collector
+ */
 class PostFeedChannel extends BasePost {
 
 	private $post_type = 'fc-feed-channel';
 
 	private $taxonomy = 'fc_feed_channel_cat';
 
+	/**
+	 * PostFeedChannel constructor.
+	 */
 	public function __construct() {
 		$this->run();
 	}
 
+	/**
+	 * Run.
+	 */
 	public function run() {
 		add_action( 'init', [ $this, 'init' ] );
 		add_action( 'add_meta_boxes_' . $this->post_type, [ $this, 'add_meta_boxes' ] );
 		add_action( 'save_post', [ $this, 'save_post' ], 10, 2 );
 	}
 
+	/**
+	 * Fires when init action runs.
+	 */
 	public function init() {
 		$args = [
 			'labels'       => [
@@ -59,6 +72,9 @@ class PostFeedChannel extends BasePost {
 		register_taxonomy( $this->taxonomy, 'fc-feed-channel', $args );
 	}
 
+	/**
+	 * Fires when add_meta_boxes action runs.
+	 */
 	public function add_meta_boxes() {
 		add_meta_box(
 			$this->post_type . '_meta_box',
@@ -110,7 +126,7 @@ class PostFeedChannel extends BasePost {
 	}
 
 	/**
-	 * Getter
+	 * Getter.
 	 *
 	 * @param $name
 	 *
