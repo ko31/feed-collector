@@ -7,6 +7,7 @@ class Admin {
 	private $options;
 
 	private $option_name = 'feed-collector';
+
 	private $option_group = 'feed-collector-group';
 
 	public function __construct() {
@@ -16,6 +17,7 @@ class Admin {
 	public function run() {
 		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
 		add_action( 'admin_init', [ $this, 'admin_init' ] );
+		add_action( 'updated_option', [ $this, 'updated_option' ] );
 	}
 
 	public function admin_menu() {
@@ -74,5 +76,17 @@ class Admin {
 			?>
 		</form>
 		<?php
+	}
+
+	/**
+	 * Fires after the value of an option has been successfully updated.
+	 *
+	 * @param $option
+	 */
+	public static function updated_option( $option ) {
+		if ( $option === $this->option_name ) {
+			$schedule = new Schedule();
+			$schedule->update_cron_schedule();
+		}
 	}
 }

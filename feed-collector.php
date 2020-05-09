@@ -28,10 +28,13 @@ require_once( dirname( __FILE__ ) . '/vendor/autoload.php' );
 
 require_once( dirname( __FILE__ ) . '/functions.php' );
 
-//register_activation_hook( __FILE__, function () {
-//	flush_rewrite_rules();
-//} );
-
+// Run
 add_action( 'plugins_loaded', function () {
 	new Core();
+} );
+
+// Activation
+register_activation_hook( __FILE__, function () {
+	$core = new Core();
+	$core->activation();
 } );

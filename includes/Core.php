@@ -16,7 +16,7 @@ class core {
 	public function set_locale() {
 		load_plugin_textdomain(
 			FEED_COLLECTOR_TEXT_DOMAIN,
-			false,
+			FALSE,
 			plugin_basename( FEED_COLLECTOR_PATH ) . '/languages/'
 		);
 	}
@@ -27,5 +27,18 @@ class core {
 		}
 		new PostFeedChannel();
 		new PostFeedItem();
+		new Schedule();
+	}
+
+	public function activation() {
+		$schedule = new Schedule();
+		$schedule->update_cron_schedule();
+		flush_rewrite_rules();
+	}
+
+	public function deactivation() {
+		delete_option( 'feed-collector' );
+		$schedule = new Schedule();
+		$schedule->clear_cron_schedule();
 	}
 }
