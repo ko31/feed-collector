@@ -39,7 +39,7 @@ class Fetch {
 	 * @param \WP_Post_Type $feed feed channel
 	 */
 	public function fetch_items( $feed ) {
-		$post_feed_item    = new PostFeedItem();
+		$post_feed_item = new PostFeedItem();
 
 		// Get feed channel detail
 		$feed_url = get_post_meta( $feed->ID, '_fc_url', TRUE );
@@ -64,8 +64,16 @@ class Fetch {
 		$rss_items = $rss->get_items( 0, $maxitems );
 		foreach ( $rss_items as $item ) {
 
-			// TODO:すでに登録済みならスキップ
-			//
+			// Skip if the item is already registered.
+			$args = [
+				'post_type'     => $post_feed_item->post_type,
+				'post_per_page' => 1,
+				'meta_key'      => '_fc_item_permalink',
+				'meta_value'    => $item->get_permalink(),
+			];
+			if ( $is_registered = get_posts( $args ) ) {
+				continue;
+			}
 
 			$post_date = $item->get_date( 'U' ) ? date_i18n( get_option( 'date_format' ), $item->get_date( 'U' ) ) : date_i18n( get_option( 'date_format' ) );
 
@@ -90,7 +98,7 @@ class Fetch {
 				continue;
 			}
 
-			if ($enclosure = $item->get_enclosure()){
+			if ( $enclosure = $item->get_enclosure() ) {
 				$enclosure = $enclosure->get_link();
 			}
 
