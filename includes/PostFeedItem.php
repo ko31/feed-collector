@@ -25,6 +25,11 @@ class PostFeedItem extends BasePost {
 	public function run() {
 		add_action( 'init', [ $this, 'init' ] );
 		add_action( 'add_meta_boxes_' . $this->post_type, [ $this, 'add_meta_boxes' ] );
+		add_filter( 'manage_' . $this->post_type . '_posts_columns', [ $this, 'manage_posts_columns' ] );
+		add_action( 'manage_' . $this->post_type . '_posts_custom_column', [
+			$this,
+			'manage_posts_custom_column'
+		], 10, 2 );
 		add_action( 'save_post', [ $this, 'save_post' ], 10, 2 );
 	}
 
@@ -62,6 +67,41 @@ class PostFeedItem extends BasePost {
 			[ $this, 'render_meta_box_callback' ],
 			$this->post_type
 		);
+	}
+
+	/**
+	 * Fires when manage_posts_columns action of custom post type runs.
+	 */
+	public function manage_posts_columns( $columns ) {
+		$new_columns = [];
+
+		foreach ( $columns as $column_name => $column_display_name ) {
+			if ( $column_name === 'date' ) {
+				$new_columns['permalink'] = __( 'Permalink', 'feed-collector' );
+				$new_columns['channel']   = __( 'Channel', 'feed-collector' );
+			}
+			$new_columns[ $column_name ] = $column_display_name;
+		}
+
+		return $new_columns;
+	}
+
+	/**
+	 * Fires when manage_posts_custom_column action of custom post type runs.
+	 */
+	public function manage_posts_custom_column( $column_name, $post_id ) {
+		switch ( $column_name ) {
+			case 'permalink' :
+				$permalink = get_post_meta( $post_id, '_fc_item_permalink', true );
+				echo sprintf( '<a href="%s" target="_blank">%s</a>', esc_url( $permalink ), esc_html( $permalink ) );
+				break;
+			case 'channel':
+				$feed_channel_id = get_post_meta( $post_id, '_fc_feed_channel_id', true );
+				echo sprintf( '<a href="%s">%s</a>', get_edit_post_link( $feed_channel_id ), get_the_title( $feed_channel_id ) );
+				break;
+			default:
+				break;
+		}
 	}
 
 	/**

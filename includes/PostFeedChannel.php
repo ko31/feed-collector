@@ -57,9 +57,10 @@ class PostFeedChannel extends BasePost {
 		register_post_type( $this->post_type, $args );
 
 		$args = [
-			'label'        => __( 'Feed Category', 'feed-collector' ),
+			'label'        => __( 'Feed Channel Category', 'feed-collector' ),
 			'hierarchical' => true,
 			'show_in_rest' => true,
+			'rewrite'      => false,
 		];
 
 		/**
