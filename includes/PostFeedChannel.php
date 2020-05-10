@@ -40,11 +40,11 @@ class PostFeedChannel extends BasePost {
 				'all_items' => __( 'Feed Channels', 'feed-collector' ),
 				'menu_name' => __( 'Feed Collector', 'feed-collector' ),
 			],
-			'public'       => TRUE,
+			'public'       => true,
 			'supports'     => [ 'title', 'thumbnail' ],
-			'has_archive'  => TRUE,
+			'has_archive'  => true,
 			'menu_icon'    => 'dashicons-rss',
-			'show_in_rest' => TRUE,
+			'show_in_rest' => true,
 		];
 
 		/**
@@ -58,8 +58,8 @@ class PostFeedChannel extends BasePost {
 
 		$args = [
 			'label'        => __( 'Feed Category', 'feed-collector' ),
-			'hierarchical' => TRUE,
-			'show_in_rest' => TRUE,
+			'hierarchical' => true,
+			'show_in_rest' => true,
 		];
 
 		/**
@@ -141,7 +141,7 @@ class PostFeedChannel extends BasePost {
 				return $this->taxonomy;
 				break;
 			default:
-				return NULL;
+				return null;
 				break;
 
 		}

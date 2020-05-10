@@ -34,11 +34,11 @@ class PostFeedItem extends BasePost {
 	public function init() {
 		$args = [
 			'label'        => __( 'Feed Items', 'feed-collector' ),
-			'public'       => TRUE,
+			'public'       => true,
 			'supports'     => [ 'title' ],
-			'has_archive'  => TRUE,
+			'has_archive'  => true,
 			'menu_icon'    => 'dashicons-rss',
-			'show_in_rest' => TRUE,
+			'show_in_rest' => true,
 			'show_in_menu' => 'edit.php?post_type=fc-feed-channel',
 		];
 
@@ -142,7 +142,7 @@ class PostFeedItem extends BasePost {
 				return $this->post_type;
 				break;
 			default:
-				return NULL;
+				return null;
 				break;
 
 		}

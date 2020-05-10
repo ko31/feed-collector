@@ -29,7 +29,7 @@ class core {
 	public function set_locale() {
 		load_plugin_textdomain(
 			FEED_COLLECTOR_TEXT_DOMAIN,
-			FALSE,
+			false,
 			plugin_basename( FEED_COLLECTOR_PATH ) . '/languages/'
 		);
 	}

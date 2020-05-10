@@ -33,7 +33,7 @@ abstract class BasePost {
 			<tbody>
 			<?php
 			foreach ( $fields as $field ) {
-				$_value = get_post_meta( $post->ID, $field['id'], TRUE );
+				$_value = get_post_meta( $post->ID, $field['id'], true );
 				?>
 				<tr>
 					<th scope="row">

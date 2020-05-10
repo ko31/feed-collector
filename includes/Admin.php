@@ -56,7 +56,7 @@ class Admin {
 		add_settings_section(
 			'general_settings',
 			__( 'General Settings', 'feed-collector' ),
-			NULL,
+			null,
 			$this->option_group
 		);
 
