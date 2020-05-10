@@ -42,6 +42,12 @@ class Admin {
 			'feed-collector-settings',
 			[ $this, 'display_settings' ]
 		);
+
+		// Hide the submenu "Add New"
+		global $submenu;
+		if ( isset( $submenu['edit.php?post_type=fc-feed-channel'][10] ) ) {
+			unset( $submenu['edit.php?post_type=fc-feed-channel'][10] );
+		}
 	}
 
 	/**
