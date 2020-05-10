@@ -20,9 +20,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 define( 'FEED_COLLECTOR_VERSION', '1.0.0' );
 define( 'FEED_COLLECTOR_TEXT_DOMAIN', 'feed-controller' );
-define( 'FEED_COLLECTOR_URL', plugin_dir_url( __FILE__ ) );
 define( 'FEED_COLLECTOR_PATH', plugin_dir_path( __FILE__ ) );
-define( 'FEED_COLLECTOR_INC', FEED_COLLECTOR_PATH . 'includes/' );
 
 require_once( dirname( __FILE__ ) . '/vendor/autoload.php' );
 
