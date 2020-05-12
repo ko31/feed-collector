@@ -73,6 +73,14 @@ class Admin {
 			$this->option_group,
 			'general_settings'
 		);
+
+		add_settings_field(
+			'feed_cache_time',
+			__( 'Feed cache time', 'feed-collector' ),
+			[ $this, 'feed_cache_time_callback' ],
+			$this->option_group,
+			'general_settings'
+		);
 	}
 
 	/**
@@ -86,6 +94,20 @@ class Admin {
 		       placeholder="<?php echo esc_attr( fc_default_cron_interval() ); ?>"
 		       class="small-text">
 		<p class="description"><?php printf( __( 'Cron interval in hours. Default is <code>%s</code>.', 'feed-collector' ), fc_default_cron_interval() ); ?></p>
+		<?php
+	}
+
+	/**
+	 * Render feed_cache_time field.
+	 */
+	public function feed_cache_time_callback() {
+		$feed_cache_time = isset( $this->options['feed_cache_time'] ) ? $this->options['feed_cache_time'] : '';
+		?>
+		<input name="<?php echo $this->option_name; ?>[feed_cache_time]" type="number" step="1" min="60"
+		       id="feed_cache_time" value="<?php echo esc_attr( $feed_cache_time ); ?>"
+		       placeholder="43200"
+		       class="small-text">
+		<p class="description"><?php _e( 'lifetime of the feed cache in seconds. Default is <code>43200</code> seconds (12 hours).', 'feed-collector' ); ?></p>
 		<?php
 	}
 

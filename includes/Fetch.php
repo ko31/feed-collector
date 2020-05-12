@@ -8,11 +8,38 @@ namespace Feed_Collector;
  */
 class Fetch {
 
+	private $options;
+
+	private $option_name = 'feed-collector-setting';
+
 	/**
 	 * Fetch constructor.
 	 */
 	public function __construct() {
-		//
+		$this->run();
+	}
+
+	/**
+	 * Run
+	 */
+	public function run() {
+		$this->options = get_option( $this->option_name );
+		add_filter( 'wp_feed_cache_transient_lifetime', [ $this, 'feed_cache_transient_lifetime' ] );
+	}
+
+	/**
+	 * Filter feed cache transient lifetime.
+	 *
+	 * @param $lifetime
+	 *
+	 * @return int
+	 */
+	public function feed_cache_transient_lifetime( $lifetime ) {
+		if ( $feed_cache_time = $this->options['feed_cache_time'] ) {
+			$lifetime = $feed_cache_time;
+		}
+
+		return $lifetime;
 	}
 
 	/**
