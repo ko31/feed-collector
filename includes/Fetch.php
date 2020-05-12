@@ -23,8 +23,8 @@ class Fetch {
 
 		// Get feed channels
 		$args  = [
-			'post_type'     => $post_feed_channel->post_type,
-			'post_per_page' => - 1,
+			'post_type'      => $post_feed_channel->post_type,
+			'posts_per_page' => - 1,
 		];
 		$feeds = get_posts( $args );
 		foreach ( $feeds as $feed ) {
@@ -66,10 +66,10 @@ class Fetch {
 
 			// Skip if the item is already registered.
 			$args = [
-				'post_type'     => $post_feed_item->post_type,
-				'post_per_page' => 1,
-				'meta_key'      => '_fc_item_permalink',
-				'meta_value'    => $item->get_permalink(),
+				'post_type'      => $post_feed_item->post_type,
+				'posts_per_page' => 1,
+				'meta_key'       => '_fc_item_permalink',
+				'meta_value'     => $item->get_permalink(),
 			];
 			if ( $is_registered = get_posts( $args ) ) {
 				continue;
