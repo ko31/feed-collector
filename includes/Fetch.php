@@ -102,7 +102,7 @@ class Fetch {
 				continue;
 			}
 
-			$post_date = $item->get_date( 'U' ) ? date_i18n( get_option( 'date_format' ), $item->get_date( 'U' ) ) : date_i18n( get_option( 'date_format' ) );
+			$post_date = $item->get_date( 'U' ) ? date_i18n( 'Y-m-d H:i:s', $item->get_date( 'U' ) ) : date_i18n( 'Y-m-d H:i:s' );
 
 			$new_feed_item = [
 				'post_type'    => $post_feed_item->post_type,
@@ -132,7 +132,7 @@ class Fetch {
 			$metas = [
 				'_fc_feed_channel_id'  => $feed->ID,
 				'_fc_item_published'   => $post_date,
-				'_fc_item_updated'     => $item->get_updated_date( 'U' ) ? date_i18n( get_option( 'date_format' ), $item->get_updated_date( 'U' ) ) : $post_date,
+				'_fc_item_updated'     => $item->get_updated_date( 'U' ) ? date_i18n( 'Y-m-d H:i:s', $item->get_updated_date( 'U' ) ) : $post_date,
 				'_fc_item_title'       => $item->get_title(),
 				'_fc_item_permalink'   => $item->get_permalink(),
 				'_fc_item_enclosure'   => $enclosure,
