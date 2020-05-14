@@ -69,11 +69,11 @@ class Fetch {
 		$post_feed_item = new PostFeedItem();
 
 		// Get feed channel detail
-		$feed_url = get_post_meta( $feed->ID, '_fc_url', true );
-		if ( ! $feed_limit = get_post_meta( $feed->ID, '_fc_limit', true ) ) {
+		$feed_url = get_post_meta( $feed->ID, '_fc_channel_url', true );
+		if ( ! $feed_limit = get_post_meta( $feed->ID, '_fc_channel_limit', true ) ) {
 			$feed_limit = 20;
 		}
-		$feed_excluded_keywords = get_post_meta( $feed->ID, '_fc_excluded_keywords', true );
+		$feed_excluded_keywords = get_post_meta( $feed->ID, '_fc_channel_excluded_keywords', true );
 
 		// Fetch feed items
 		$rss = fetch_feed( $feed_url );

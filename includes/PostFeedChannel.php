@@ -95,23 +95,32 @@ class PostFeedChannel extends BasePost {
 
 		$fields['url'] = [
 			'label'       => __( 'URL', 'feed-collector' ),
-			'id'          => '_fc_url',
+			'id'          => '_fc_channel_url',
 			'type'        => 'text',
 			'class'       => 'large-text',
-			'placeholder' => __( 'Input feed url', 'feed-collector' ),
+			'placeholder' => __( 'https://', 'feed-collector' ),
+			'description' => __( 'Enter the URL of the RSS feed.', 'feed-collector' ),
+		];
+
+		$fields['description'] = [
+			'label' => __( 'Description', 'feed-collector' ),
+			'id'    => '_fc_channel_description',
+			'type'  => 'text',
+			'class' => 'large-text',
 		];
 
 		$fields['limit'] = [
 			'label'       => __( 'Limit', 'feed-collector' ),
-			'id'          => '_fc_limit',
+			'id'          => '_fc_channel_limit',
 			'type'        => 'number',
 			'class'       => 'small-text',
 			'placeholder' => 20,
+			'description' => __( 'Set this if you want to change the maximum number of items you can acquire at one time. Default is <code>20</code>.', 'feed-collector' ),
 		];
 
 		$fields['excluded_keywords'] = [
 			'label'       => __( 'Excluded keywords', 'feed-collector' ),
-			'id'          => '_fc_excluded_keywords',
+			'id'          => '_fc_channel_excluded_keywords',
 			'type'        => 'text',
 			'class'       => 'large-text',
 			'placeholder' => __( 'Input excluded keywords', 'feed-collector' ),

@@ -46,7 +46,7 @@ abstract class BasePost {
 						       name="<?php echo esc_attr( $field['id'] ); ?>" value="<?php echo esc_attr( $_value ); ?>"
 						       class="fc-input-text <?php echo esc_attr( $field['class'] ); ?>"
 						       placeholder="<?php echo esc_attr( $field['placeholder'] ); ?>"/>
-						<p class="description"><?php echo esc_html( $field['description'] ); ?></p>
+						<p class="description"><?php echo $field['description']; ?></p>
 					</td>
 				</tr>
 				<?php
