@@ -118,13 +118,22 @@ class PostFeedChannel extends BasePost {
 			'description' => __( 'Set this if you want to change the maximum number of items you can acquire at one time. Default is <code>20</code>.', 'feed-collector' ),
 		];
 
-		$fields['excluded_keywords'] = [
-			'label'       => __( 'Excluded keywords', 'feed-collector' ),
-			'id'          => '_fc_channel_excluded_keywords',
+		$fields['included_keywords'] = [
+			'label'       => __( 'Keywords to include', 'feed-collector' ),
+			'id'          => '_fc_channel_included_keywords',
 			'type'        => 'text',
 			'class'       => 'large-text',
 			'placeholder' => __( 'Input excluded keywords', 'feed-collector' ),
-			'description' => __( 'If you have more than one keyword, please enter them separated by commas.', 'feed-collector' ),
+			'description' => __( 'Only items that contain this keyword in the title will be retrieved. If you have more than one keyword, please enter them separated by commas.', 'feed-collector' ),
+		];
+
+		$fields['excluded_keywords'] = [
+			'label'       => __( 'Keywords to exclude', 'feed-collector' ),
+			'id'          => '_fc_channel_excluded_keywords',
+			'type'        => 'text',
+			'class'       => 'large-text',
+			'placeholder' => __( 'Input keywords to exclude', 'feed-collector' ),
+			'description' => __( 'If the title of the item contains this keyword, it will be excluded. If you have more than one keyword, please enter them separated by commas.', 'feed-collector' ),
 		];
 
 		/**
