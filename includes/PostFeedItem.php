@@ -30,6 +30,8 @@ class PostFeedItem extends BasePost {
 			$this,
 			'manage_posts_custom_column'
 		], 10, 2 );
+		add_action( 'restrict_manage_posts', [ $this, 'restrict_manage_posts' ] );
+		add_action( 'pre_get_posts', [ $this, 'pre_get_posts' ] );
 		add_action( 'save_post', [ $this, 'save_post' ], 10, 2 );
 	}
 
@@ -103,6 +105,61 @@ class PostFeedItem extends BasePost {
 				break;
 		}
 	}
+
+	/**
+	 * Fires when restrict_manage_posts action runs.
+	 *
+	 * @param $post_type
+	 */
+	public function restrict_manage_posts( $post_type ) {
+		if ( $post_type !== $this->post_type ) {
+			return;
+		}
+
+		$selected_feed_id = isset( $_GET['_fc_feed_channel_id'] ) ? $_GET['_fc_feed_channel_id'] : '';
+
+		$post_feed_channel = new PostFeedChannel();
+
+		$args  = [
+			'post_type'      => $post_feed_channel->post_type,
+			'posts_per_page' => - 1,
+		];
+		$feeds = get_posts( $args );
+		?>
+		<select id="_fc_feed_channel_id" name="_fc_feed_channel_id">
+			<option value=""><?php _e( 'All channels', 'feed-collector' ); ?></option>
+			<?php
+			foreach ( $feeds as $feed ) {
+				$selected = selected( $selected_feed_id, $feed->ID, false );
+				?>
+				<option
+					value="<?php echo esc_attr( $feed->ID ); ?>" <?php echo $selected; ?>><?php echo esc_html( $feed->post_title ); ?></option>
+				<?php
+			}
+			?>
+		</select>
+		<?php
+	}
+
+	/**
+	 * Fires when pre_get_posts action runs.
+	 *
+	 * @param \WP_Query $query
+	 */
+	public function pre_get_posts( $query ) {
+
+		if ( is_admin() && $query->get( 'post_type' ) === $this->post_type && $query->is_main_query() ) {
+			$args = $query->get( 'meta_query', [] );
+			if ( ! empty( $_GET['_fc_feed_channel_id'] ) ) {
+				$args[] = [
+					'key'   => '_fc_feed_channel_id',
+					'value' => $_GET['_fc_feed_channel_id'],
+				];
+			}
+			$query->set( 'meta_query', $args );
+		}
+	}
+
 
 	/**
 	 * Get meta fields.
