@@ -85,7 +85,6 @@ class Fetch {
 		 * WP has a SimplePie error.
 		 * "Warning: A non-numeric value encountered in /wordpress/wp-includes/SimplePie/Parse/Date.php on line 694"
 		 * @link https://core.trac.wordpress.org/ticket/42515
-		 * @link https://github.com/michaeluno/_fix-simplepie-errors
 		 */
 		$maxitems  = $rss->get_item_quantity( $feed_limit );
 		$rss_items = $rss->get_items( 0, $maxitems );
