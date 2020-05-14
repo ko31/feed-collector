@@ -73,7 +73,12 @@ class Fetch {
 		if ( ! $feed_limit = get_post_meta( $feed->ID, '_fc_channel_limit', true ) ) {
 			$feed_limit = 20;
 		}
-		$feed_excluded_keywords = get_post_meta( $feed->ID, '_fc_channel_excluded_keywords', true );
+		if ( $feed_included_keywords = get_post_meta( $feed->ID, '_fc_channel_included_keywords', true ) ) {
+			$feed_included_keywords = explode( ',', $feed_included_keywords );
+		}
+		if ( $feed_excluded_keywords = get_post_meta( $feed->ID, '_fc_channel_excluded_keywords', true ) ) {
+			$feed_excluded_keywords = explode( ',', $feed_excluded_keywords );
+		}
 
 		// Fetch feed items
 		$rss = fetch_feed( $feed_url );
@@ -89,6 +94,32 @@ class Fetch {
 		$maxitems  = $rss->get_item_quantity( $feed_limit );
 		$rss_items = $rss->get_items( 0, $maxitems );
 		foreach ( $rss_items as $item ) {
+
+			// Check if the title contains keywords.
+			if ( $feed_included_keywords ) {
+				$is_included = false;
+				foreach ( $feed_included_keywords as $_keyword ) {
+					if ( strpos( $item->get_title(), $_keyword ) !== false ) {
+						$is_included = true;
+						break;
+					}
+				}
+				if ( ! $is_included ) {
+					continue;
+				}
+			}
+			if ( $feed_excluded_keywords ) {
+				$is_excluded = false;
+				foreach ( $feed_excluded_keywords as $_keyword ) {
+					if ( strpos( $item->get_title(), $_keyword ) !== false ) {
+						$is_excluded = true;
+						break;
+					}
+				}
+				if ( $is_excluded ) {
+					continue;
+				}
+			}
 
 			// Skip if the item is already registered.
 			$args = [
