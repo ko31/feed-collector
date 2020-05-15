@@ -27,6 +27,11 @@ class PostFeedChannel extends BasePost {
 	public function run() {
 		add_action( 'init', [ $this, 'init' ] );
 		add_action( 'add_meta_boxes_' . $this->post_type, [ $this, 'add_meta_boxes' ] );
+		add_filter( 'manage_' . $this->post_type . '_posts_columns', [ $this, 'manage_posts_columns' ] );
+		add_action( 'manage_' . $this->post_type . '_posts_custom_column', [
+			$this,
+			'manage_posts_custom_column'
+		], 10, 2 );
 		add_action( 'save_post', [ $this, 'save_post' ], 10, 2 );
 	}
 
@@ -83,6 +88,47 @@ class PostFeedChannel extends BasePost {
 			[ $this, 'render_meta_box_callback' ],
 			$this->post_type
 		);
+	}
+
+	/**
+	 * Fires when manage_posts_columns action of custom post type runs.
+	 */
+	public function manage_posts_columns( $columns ) {
+		$new_columns = [];
+
+		foreach ( $columns as $column_name => $column_display_name ) {
+			if ( $column_name === 'date' ) {
+				$new_columns['items'] = __( 'Feed items', 'feed-collector' );
+			}
+			$new_columns[ $column_name ] = $column_display_name;
+		}
+
+		return $new_columns;
+	}
+
+	/**
+	 * Fires when manage_posts_custom_column action of custom post type runs.
+	 */
+	public function manage_posts_custom_column( $column_name, $post_id ) {
+		switch ( $column_name ) {
+			case 'items' :
+				$post_feed_item = new PostFeedItem();
+				$args           = [
+					'post_type'      => $post_feed_item->post_type,
+					'posts_per_page' => - 1,
+					'meta_query'     => [
+						[
+							'key'   => '_fc_feed_channel_id',
+							'value' => $post_id,
+						],
+					],
+				];
+				$items          = get_posts( $args );
+				echo sprintf( '<a href="%s">%d %s</a>', admin_url( 'edit.php?post_type=' . $post_feed_item->post_type . '&_fc_feed_channel_id=' . $post_id ), count( $items ), __( 'counts', 'feed-collector' ) );
+				break;
+			default:
+				break;
+		}
 	}
 
 	/**
