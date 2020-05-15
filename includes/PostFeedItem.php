@@ -16,6 +16,14 @@ class PostFeedItem extends BasePost {
 	 * PostFeedItem constructor.
 	 */
 	public function __construct() {
+
+		/**
+		 * Filter the post type name of feed channel
+		 *
+		 * @param string $post_type
+		 */
+		$this->post_type = apply_filters( 'fc_feed_item_post_type_name', $this->post_type );
+
 		$this->run();
 	}
 

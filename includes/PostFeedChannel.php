@@ -18,6 +18,21 @@ class PostFeedChannel extends BasePost {
 	 * PostFeedChannel constructor.
 	 */
 	public function __construct() {
+
+		/**
+		 * Filter the post type name of feed channel
+		 *
+		 * @param string $post_type
+		 */
+		$this->post_type = apply_filters( 'fc_feed_channel_post_type_name', $this->post_type );
+
+		/**
+		 * Filter the taxonomy name of feed channel
+		 *
+		 * @param string $taxonomy
+		 */
+		$this->taxonomy = apply_filters( 'fc_feed_channel_taxonomy_name', $this->taxonomy );
+
 		$this->run();
 	}
 
