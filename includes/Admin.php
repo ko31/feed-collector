@@ -1,6 +1,6 @@
 <?php
 
-namespace Feed_Collector;
+namespace GS\Feed_Collector;
 
 /**
  * Class Admin
@@ -130,7 +130,6 @@ class Admin {
 			settings_fields( $this->option_group );
 			do_settings_sections( $this->option_group );
 			submit_button();
-
 			?>
 		</form>
 		<?php

@@ -1,6 +1,6 @@
 <?php
 
-namespace Feed_Collector;
+namespace GS\Feed_Collector;
 
 /**
  * Class core

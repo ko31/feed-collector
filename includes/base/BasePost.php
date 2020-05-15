@@ -1,6 +1,6 @@
 <?php
 
-namespace Feed_Collector\base;
+namespace GS\Feed_Collector\base;
 
 /**
  * Class BasePost

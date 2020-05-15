@@ -12,7 +12,7 @@
  * @package         Feed_Collector
  */
 
-namespace Feed_Collector;
+namespace GS\Feed_Collector;
 
 if ( ! defined( 'WPINC' ) ) {
 	die;

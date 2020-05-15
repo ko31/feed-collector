@@ -1,8 +1,8 @@
 <?php
 
-namespace Feed_Collector;
+namespace GS\Feed_Collector;
 
-use Feed_Collector\base\BasePost;
+use GS\Feed_Collector\base\BasePost;
 
 /**
  * Class PostFeedChannel

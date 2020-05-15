@@ -12,7 +12,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Feed_Collector\\": "includes/"
+      "GS\\Feed_Collector\\": "includes/"
     }
   }
 }
