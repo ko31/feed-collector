@@ -95,6 +95,13 @@ class Admin {
 		       class="small-text">
 		<p class="description"><?php printf( __( 'Cron interval in hours. Default is <code>%s</code>.', 'feed-collector' ), fc_default_cron_interval() ); ?></p>
 		<?php
+		// Show next run time.
+		$schedule = new Schedule();
+		if ( $next_run = $schedule->next_scheduled_datetime() ) {
+			?>
+			<p class="description"><?php printf( __( 'The next run is at <code>%s</code>.', 'feed-collector' ), $next_run ); ?></p>
+			<?php
+		}
 	}
 
 	/**
@@ -123,6 +130,7 @@ class Admin {
 			settings_fields( $this->option_group );
 			do_settings_sections( $this->option_group );
 			submit_button();
+
 			?>
 		</form>
 		<?php

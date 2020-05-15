@@ -64,6 +64,22 @@ class Schedule {
 	}
 
 	/**
+	 * Get next event datetime.
+	 *
+	 * @param string $datetime_format
+	 */
+	public function next_scheduled_datetime( $datetime_format = '' ) {
+		if ( ! $timestamp = wp_next_scheduled( 'fc_fetch_feed' ) ) {
+			return;
+		}
+		if ( ! $datetime_format ) {
+			$datetime_format = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
+		}
+
+		return get_date_from_gmt( date( $datetime_format, $timestamp ), $datetime_format );
+	}
+
+	/**
 	 * Fires when cron schedulee event runs.
 	 */
 	public function fc_fetch_feed() {
