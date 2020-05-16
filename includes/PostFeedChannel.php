@@ -10,29 +10,10 @@ use GS\Feed_Collector\base\BasePost;
  */
 class PostFeedChannel extends BasePost {
 
-	private $post_type = 'fc-feed-channel';
-
-	private $taxonomy = 'fc-feed-channel-cat';
-
 	/**
 	 * PostFeedChannel constructor.
 	 */
 	public function __construct() {
-
-		/**
-		 * Filter the post type name of feed channel
-		 *
-		 * @param string $post_type
-		 */
-		$this->post_type = apply_filters( 'fc_feed_channel_post_type_name', $this->post_type );
-
-		/**
-		 * Filter the taxonomy name of feed channel
-		 *
-		 * @param string $taxonomy
-		 */
-		$this->taxonomy = apply_filters( 'fc_feed_channel_taxonomy_name', $this->taxonomy );
-
 		$this->run();
 	}
 
@@ -41,12 +22,9 @@ class PostFeedChannel extends BasePost {
 	 */
 	public function run() {
 		add_action( 'init', [ $this, 'init' ] );
-		add_action( 'add_meta_boxes_' . $this->post_type, [ $this, 'add_meta_boxes' ] );
-		add_filter( 'manage_' . $this->post_type . '_posts_columns', [ $this, 'manage_posts_columns' ] );
-		add_action( 'manage_' . $this->post_type . '_posts_custom_column', [
-			$this,
-			'manage_posts_custom_column'
-		], 10, 2 );
+		add_action( 'add_meta_boxes_fc-feed-channel', [ $this, 'add_meta_boxes' ] );
+		add_filter( 'manage_fc-feed-channel_posts_columns', [ $this, 'manage_posts_columns' ] );
+		add_action( 'manage_fc-feed-channel_posts_custom_column', [ $this, 'manage_posts_custom_column' ], 10, 2 );
 		add_action( 'save_post', [ $this, 'save_post' ], 10, 2 );
 	}
 
@@ -73,7 +51,7 @@ class PostFeedChannel extends BasePost {
 		 */
 		$args = apply_filters( 'fc_feed_channel_register_post_type_args', $args );
 
-		register_post_type( $this->post_type, $args );
+		register_post_type( 'fc-feed-channel', $args );
 
 		$args = [
 			'label'        => __( 'Feed Channel Category', 'feed-collector' ),
@@ -89,7 +67,7 @@ class PostFeedChannel extends BasePost {
 		 */
 		$args = apply_filters( 'fc_feed_channel_category_register_taxonomy_args', $args );
 
-		register_taxonomy( $this->taxonomy, $this->post_type, $args );
+		register_taxonomy( 'fc-feed-channel-cat', 'fc-feed-channel', $args );
 	}
 
 	/**
@@ -97,10 +75,10 @@ class PostFeedChannel extends BasePost {
 	 */
 	public function add_meta_boxes() {
 		add_meta_box(
-			$this->post_type . '_meta_box',
+			'fc-feed-channel_meta_box',
 			__( 'Feed Channel Details', 'feed-collector' ),
 			[ $this, 'render_meta_box_callback' ],
-			$this->post_type
+			'fc-feed-channel'
 		);
 	}
 
@@ -126,9 +104,8 @@ class PostFeedChannel extends BasePost {
 	public function manage_posts_custom_column( $column_name, $post_id ) {
 		switch ( $column_name ) {
 			case 'items' :
-				$post_feed_item = new PostFeedItem();
 				$args           = [
-					'post_type'      => $post_feed_item->post_type,
+					'post_type'      => 'fc-feed-item',
 					'posts_per_page' => - 1,
 					'meta_query'     => [
 						[
@@ -138,7 +115,7 @@ class PostFeedChannel extends BasePost {
 					],
 				];
 				$items          = get_posts( $args );
-				echo sprintf( '<a href="%s">%d %s</a>', admin_url( 'edit.php?post_type=' . $post_feed_item->post_type . '&_fc_feed_channel_id=' . $post_id ), count( $items ), __( 'counts', 'feed-collector' ) );
+				echo sprintf( '<a href="%s">%d %s</a>', admin_url( 'edit.php?post_type=fc-feed-item&_fc_feed_channel_id=' . $post_id ), count( $items ), __( 'counts', 'feed-collector' ) );
 				break;
 			default:
 				break;
@@ -210,27 +187,5 @@ class PostFeedChannel extends BasePost {
 		 * @param array $args
 		 */
 		return apply_filters( 'fc_feed_channel_get_meta_fields', $fields );
-	}
-
-	/**
-	 * Getter.
-	 *
-	 * @param $name
-	 *
-	 * @return string|null
-	 */
-	public function __get( $name ) {
-		switch ( $name ) {
-			case 'post_type':
-				return $this->post_type;
-				break;
-			case 'taxonomy':
-				return $this->taxonomy;
-				break;
-			default:
-				return null;
-				break;
-
-		}
 	}
 }

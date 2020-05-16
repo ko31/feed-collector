@@ -10,29 +10,10 @@ use GS\Feed_Collector\base\BasePost;
  */
 class PostFeedItem extends BasePost {
 
-	private $post_type = 'fc-feed-item';
-
-	private $taxonomy = 'fc-feed-item-tag';
-
 	/**
 	 * PostFeedItem constructor.
 	 */
 	public function __construct() {
-
-		/**
-		 * Filter the post type name of feed item
-		 *
-		 * @param string $post_type
-		 */
-		$this->post_type = apply_filters( 'fc_feed_item_post_type_name', $this->post_type );
-
-		/**
-		 * Filter the taxonomy name of feed item
-		 *
-		 * @param string $taxonomy
-		 */
-		$this->taxonomy = apply_filters( 'fc_feed_item_taxonomy_name', $this->taxonomy );
-
 		$this->run();
 	}
 
@@ -43,9 +24,9 @@ class PostFeedItem extends BasePost {
 		add_action( 'init', [ $this, 'init' ] );
 		add_action( 'admin_menu', [ $this, 'admin_menu' ], 20 );
 		add_action( 'parent_file', [ $this, 'parent_file' ] );
-		add_action( 'add_meta_boxes_' . $this->post_type, [ $this, 'add_meta_boxes' ] );
-		add_filter( 'manage_' . $this->post_type . '_posts_columns', [ $this, 'manage_posts_columns' ] );
-		add_action( 'manage_' . $this->post_type . '_posts_custom_column', [
+		add_action( 'add_meta_boxes_fc-feed-item', [ $this, 'add_meta_boxes' ] );
+		add_filter( 'manage_fc-feed-item_posts_columns', [ $this, 'manage_posts_columns' ] );
+		add_action( 'manage_fc-feed-item_posts_custom_column', [
 			$this,
 			'manage_posts_custom_column'
 		], 10, 2 );
@@ -74,7 +55,7 @@ class PostFeedItem extends BasePost {
 		 */
 		$args = apply_filters( 'fc_feed_item_register_post_type_args', $args );
 
-		register_post_type( $this->post_type, $args );
+		register_post_type( 'fc-feed-item', $args );
 
 		$args = [
 			'label'        => __( 'Feed Item Tag', 'feed-collector' ),
@@ -90,7 +71,7 @@ class PostFeedItem extends BasePost {
 		 */
 		$args = apply_filters( 'fc_feed_item_category_register_taxonomy_args', $args );
 
-		register_taxonomy( $this->taxonomy, $this->post_type, $args );
+		register_taxonomy( 'fc-feed-item-tag', 'fc-feed-item', $args );
 	}
 
 	/**
@@ -110,7 +91,7 @@ class PostFeedItem extends BasePost {
 	 * Fires when parent_file action runs.
 	 */
 	public function parent_file( $parent_file ) {
-		if ( get_current_screen()->taxonomy === $this->taxonomy ) {
+		if ( get_current_screen()->taxonomy === 'fc-feed-item-tag' ) {
 			$parent_file = 'edit.php?post_type=fc-feed-channel';
 		}
 
@@ -122,10 +103,10 @@ class PostFeedItem extends BasePost {
 	 */
 	public function add_meta_boxes() {
 		add_meta_box(
-			$this->post_type . '_meta_box',
+			'fc-feed-item_meta_box',
 			__( 'Feed Item Details', 'feed-collector' ),
 			[ $this, 'render_meta_box_callback' ],
-			$this->post_type
+			'fc-feed-item'
 		);
 	}
 
@@ -170,16 +151,14 @@ class PostFeedItem extends BasePost {
 	 * @param $post_type
 	 */
 	public function restrict_manage_posts( $post_type ) {
-		if ( $post_type !== $this->post_type ) {
+		if ( $post_type !== 'fc-feed-item') {
 			return;
 		}
 
 		$selected_feed_id = isset( $_GET['_fc_feed_channel_id'] ) ? $_GET['_fc_feed_channel_id'] : '';
 
-		$post_feed_channel = new PostFeedChannel();
-
 		$args  = [
-			'post_type'      => $post_feed_channel->post_type,
+			'post_type'      => 'fc-feed-channel',
 			'posts_per_page' => - 1,
 		];
 		$feeds = get_posts( $args );
@@ -206,7 +185,7 @@ class PostFeedItem extends BasePost {
 	 */
 	public function pre_get_posts( $query ) {
 
-		if ( is_admin() && $query->get( 'post_type' ) === $this->post_type && $query->is_main_query() ) {
+		if ( is_admin() && $query->get( 'post_type' ) === 'fc-feed-item' && $query->is_main_query() ) {
 			$args = $query->get( 'meta_query', [] );
 			if ( ! empty( $_GET['_fc_feed_channel_id'] ) ) {
 				$args[] = [
@@ -282,24 +261,5 @@ class PostFeedItem extends BasePost {
 		 * @param array $args
 		 */
 		return apply_filters( 'fc_feed_item_get_meta_fields', $fields );
-	}
-
-	/**
-	 * Getter.
-	 *
-	 * @param $name
-	 *
-	 * @return string|null
-	 */
-	public function __get( $name ) {
-		switch ( $name ) {
-			case 'post_type':
-				return $this->post_type;
-				break;
-			default:
-				return null;
-				break;
-
-		}
 	}
 }

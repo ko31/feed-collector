@@ -48,11 +48,9 @@ class Fetch {
 	public function fetch_feeds() {
 		set_time_limit( 0 );
 
-		$post_feed_channel = new PostFeedChannel();
-
 		// Get feed channels
 		$args  = [
-			'post_type'      => $post_feed_channel->post_type,
+			'post_type'      => 'fc-feed-channel',
 			'posts_per_page' => - 1,
 		];
 		$feeds = get_posts( $args );
@@ -68,7 +66,6 @@ class Fetch {
 	 * @param \WP_Post_Type $feed feed channel
 	 */
 	public function fetch_items( $feed ) {
-		$post_feed_item = new PostFeedItem();
 
 		// Get feed channel detail
 		$feed_url = get_post_meta( $feed->ID, '_fc_channel_url', true );
@@ -125,7 +122,7 @@ class Fetch {
 
 			// Skip if the item is already registered.
 			$args = [
-				'post_type'      => $post_feed_item->post_type,
+				'post_type'      => 'fc-feed-item',
 				'posts_per_page' => 1,
 				'meta_key'       => '_fc_item_permalink',
 				'meta_value'     => $item->get_permalink(),
@@ -137,7 +134,7 @@ class Fetch {
 			$post_date = $item->get_date( 'U' ) ? date_i18n( 'Y-m-d H:i:s', $item->get_date( 'U' ) ) : date_i18n( 'Y-m-d H:i:s' );
 
 			$new_feed_item = [
-				'post_type'    => $post_feed_item->post_type,
+				'post_type'    => 'fc-feed-item',
 				'post_title'   => $item->get_title(),
 				'post_content' => '',
 				'post_status'  => 'publish',
