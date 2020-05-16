@@ -12,7 +12,7 @@ class PostFeedChannel extends BasePost {
 
 	private $post_type = 'fc-feed-channel';
 
-	private $taxonomy = 'fc_feed_channel_cat';
+	private $taxonomy = 'fc-feed-channel-cat';
 
 	/**
 	 * PostFeedChannel constructor.
@@ -87,7 +87,7 @@ class PostFeedChannel extends BasePost {
 		 *
 		 * @param array $args
 		 */
-		$args = apply_filters( 'fc_category_register_taxonomy_args', $args );
+		$args = apply_filters( 'fc_feed_channel_category_register_taxonomy_args', $args );
 
 		register_taxonomy( $this->taxonomy, $this->post_type, $args );
 	}

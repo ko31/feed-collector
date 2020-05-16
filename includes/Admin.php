@@ -25,7 +25,7 @@ class Admin {
 	 * Run
 	 */
 	public function run() {
-		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
+		add_action( 'admin_menu', [ $this, 'admin_menu' ], 30 );
 		add_action( 'admin_init', [ $this, 'admin_init' ] );
 		add_action( 'updated_option', [ $this, 'updated_option' ] );
 	}
@@ -34,8 +34,10 @@ class Admin {
 	 * Fires when admin_menu action runs.
 	 */
 	public function admin_menu() {
+		$post_feed_channel = new PostFeedChannel();
+
 		add_submenu_page(
-			'edit.php?post_type=fc-feed-channel',
+			'edit.php?post_type='.$post_feed_channel->post_type,
 			__( 'Feed Collector Settings', 'feed-collector' ),
 			__( 'Settings', 'feed-collector' ),
 			'manage_options',
@@ -45,8 +47,8 @@ class Admin {
 
 		// Hide the submenu "Add New"
 		global $submenu;
-		if ( isset( $submenu['edit.php?post_type=fc-feed-channel'][10] ) ) {
-			unset( $submenu['edit.php?post_type=fc-feed-channel'][10] );
+		if ( isset( $submenu['edit.php?post_type='.$post_feed_channel->post_type][10] ) ) {
+			unset( $submenu['edit.php?post_type='.$post_feed_channel->post_type][10] );
 		}
 	}
 

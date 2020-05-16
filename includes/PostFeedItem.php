@@ -12,17 +12,26 @@ class PostFeedItem extends BasePost {
 
 	private $post_type = 'fc-feed-item';
 
+	private $taxonomy = 'fc-feed-item-tag';
+
 	/**
 	 * PostFeedItem constructor.
 	 */
 	public function __construct() {
 
 		/**
-		 * Filter the post type name of feed channel
+		 * Filter the post type name of feed item
 		 *
 		 * @param string $post_type
 		 */
 		$this->post_type = apply_filters( 'fc_feed_item_post_type_name', $this->post_type );
+
+		/**
+		 * Filter the taxonomy name of feed item
+		 *
+		 * @param string $taxonomy
+		 */
+		$this->taxonomy = apply_filters( 'fc_feed_item_taxonomy_name', $this->taxonomy );
 
 		$this->run();
 	}
@@ -32,6 +41,8 @@ class PostFeedItem extends BasePost {
 	 */
 	public function run() {
 		add_action( 'init', [ $this, 'init' ] );
+		add_action( 'admin_menu', [ $this, 'admin_menu' ], 20 );
+		add_action( 'parent_file', [ $this, 'parent_file' ] );
 		add_action( 'add_meta_boxes_' . $this->post_type, [ $this, 'add_meta_boxes' ] );
 		add_filter( 'manage_' . $this->post_type . '_posts_columns', [ $this, 'manage_posts_columns' ] );
 		add_action( 'manage_' . $this->post_type . '_posts_custom_column', [
@@ -53,7 +64,6 @@ class PostFeedItem extends BasePost {
 			'supports'     => [ 'title' ],
 			'has_archive'  => true,
 			'menu_icon'    => 'dashicons-rss',
-			'show_in_rest' => true,
 			'show_in_menu' => 'edit.php?post_type=fc-feed-channel',
 		];
 
@@ -65,6 +75,46 @@ class PostFeedItem extends BasePost {
 		$args = apply_filters( 'fc_feed_item_register_post_type_args', $args );
 
 		register_post_type( $this->post_type, $args );
+
+		$args = [
+			'label'        => __( 'Feed Item Tag', 'feed-collector' ),
+			'hierarchical' => false,
+			'public'       => false,
+			'show_ui'      => true,
+		];
+
+		/**
+		 * Filter the taxonomy arguments of feed item
+		 *
+		 * @param array $args
+		 */
+		$args = apply_filters( 'fc_feed_item_category_register_taxonomy_args', $args );
+
+		register_taxonomy( $this->taxonomy, $this->post_type, $args );
+	}
+
+	/**
+	 * Fires when admin_menu action runs.
+	 */
+	public function admin_menu() {
+		add_submenu_page(
+			'edit.php?post_type=fc-feed-channel',
+			__( 'Feed Item Tag', 'feed-collector' ),
+			__( 'Feed Item Tag', 'feed-collector' ),
+			'manage_categories',
+			'edit-tags.php?taxonomy=fc-feed-item-tag&post_type=fc-feed-item'
+		);
+	}
+
+	/**
+	 * Fires when parent_file action runs.
+	 */
+	public function parent_file( $parent_file ) {
+		if ( get_current_screen()->taxonomy === $this->taxonomy ) {
+			$parent_file = 'edit.php?post_type=fc-feed-channel';
+		}
+
+		return $parent_file;
 	}
 
 	/**
