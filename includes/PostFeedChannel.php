@@ -55,16 +55,15 @@ class PostFeedChannel extends BasePost {
 	 */
 	public function init() {
 		$args = [
-			'labels'       => [
+			'labels'      => [
 				'name'      => __( 'Feed Channels', 'feed-collector' ),
 				'all_items' => __( 'Feed Channels', 'feed-collector' ),
 				'menu_name' => __( 'Feed Collector', 'feed-collector' ),
 			],
-			'public'       => true,
-			'supports'     => [ 'title', 'thumbnail' ],
-			'has_archive'  => true,
-			'menu_icon'    => 'dashicons-rss',
-			'show_in_rest' => true,
+			'public'      => true,
+			'supports'    => [ 'title', 'thumbnail' ],
+			'has_archive' => true,
+			'menu_icon'   => 'dashicons-rss',
 		];
 
 		/**
@@ -79,8 +78,8 @@ class PostFeedChannel extends BasePost {
 		$args = [
 			'label'        => __( 'Feed Channel Category', 'feed-collector' ),
 			'hierarchical' => true,
-			'show_in_rest' => true,
-			'rewrite'      => false,
+			'public'       => false,
+			'show_ui'      => true,
 		];
 
 		/**
