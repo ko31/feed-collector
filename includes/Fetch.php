@@ -46,6 +46,8 @@ class Fetch {
 	 * Fetch feeds.
 	 */
 	public function fetch_feeds() {
+		set_time_limit( 0 );
+
 		$post_feed_channel = new PostFeedChannel();
 
 		// Get feed channels
