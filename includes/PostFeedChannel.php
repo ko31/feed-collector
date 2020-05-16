@@ -155,12 +155,20 @@ class PostFeedChannel extends BasePost {
 		$fields = [];
 
 		$fields['url'] = [
-			'label'       => __( 'URL', 'feed-collector' ),
+			'label'       => __( 'Feed URL', 'feed-collector' ),
 			'id'          => '_fc_channel_url',
 			'type'        => 'text',
 			'class'       => 'large-text',
 			'placeholder' => __( 'https://', 'feed-collector' ),
 			'description' => __( 'Enter the URL of the RSS feed.', 'feed-collector' ),
+		];
+
+		$fields['site_url'] = [
+			'label'       => __( 'Site URL', 'feed-collector' ),
+			'id'          => '_fc_channel_site_url',
+			'type'        => 'text',
+			'class'       => 'large-text',
+			'placeholder' => __( 'https://', 'feed-collector' ),
 		];
 
 		$fields['description'] = [
