@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Feed Collector 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/feed-collector\n"
-"POT-Creation-Date: 2020-05-15 09:29:34+00:00\n"
+"POT-Creation-Date: 2020-05-16 14:28:02+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,7 +24,7 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 
-#: includes/Admin.php:39 includes/Admin.php:121
+#: includes/Admin.php:39 includes/Admin.php:128
 msgid "Feed Collector Settings"
 msgstr ""
 
@@ -48,13 +48,17 @@ msgstr ""
 msgid "Cron interval in hours. Default is <code>%s</code>."
 msgstr ""
 
-#: includes/Admin.php:110
+#: includes/Admin.php:102
+msgid "The next run is at <code>%s</code>."
+msgstr ""
+
+#: includes/Admin.php:117
 msgid ""
 "lifetime of the feed cache in seconds. Default is <code>43200</code> "
 "seconds (12 hours)."
 msgstr ""
 
-#: includes/PostFeedChannel.php:59 includes/PostFeedChannel.php:60
+#: includes/PostFeedChannel.php:37 includes/PostFeedChannel.php:38
 msgid "Feed Channels"
 msgstr ""
 
@@ -62,113 +66,122 @@ msgstr ""
 msgid "Feed Collector"
 msgstr ""
 
-#: includes/PostFeedChannel.php:80
+#: includes/PostFeedChannel.php:57
 msgid "Feed Channel Category"
 msgstr ""
 
-#: includes/PostFeedChannel.php:102
+#: includes/PostFeedChannel.php:79
 msgid "Feed Channel Details"
 msgstr ""
 
-#: includes/PostFeedChannel.php:116
+#: includes/PostFeedChannel.php:93
 msgid "Feed items"
 msgstr ""
 
-#: includes/PostFeedChannel.php:142
+#: includes/PostFeedChannel.php:118
 msgid "counts"
 msgstr ""
 
-#: includes/PostFeedChannel.php:158
-msgid "URL"
+#: includes/PostFeedChannel.php:134
+msgid "Feed URL"
 msgstr ""
 
-#: includes/PostFeedChannel.php:162
+#: includes/PostFeedChannel.php:138 includes/PostFeedChannel.php:147
 msgid "https://"
 msgstr ""
 
-#: includes/PostFeedChannel.php:163
+#: includes/PostFeedChannel.php:139
 msgid "Enter the URL of the RSS feed."
 msgstr ""
 
-#: includes/PostFeedChannel.php:167 includes/PostFeedItem.php:223
+#: includes/PostFeedChannel.php:143
+msgid "Site URL"
+msgstr ""
+
+#: includes/PostFeedChannel.php:151 includes/PostFeedItem.php:252
 msgid "Description"
 msgstr ""
 
-#: includes/PostFeedChannel.php:174
+#: includes/PostFeedChannel.php:158
 msgid "Limit"
 msgstr ""
 
-#: includes/PostFeedChannel.php:179
+#: includes/PostFeedChannel.php:163
 msgid ""
 "Set this if you want to change the maximum number of items you can acquire "
 "at one time. Default is <code>20</code>."
 msgstr ""
 
-#: includes/PostFeedChannel.php:183
+#: includes/PostFeedChannel.php:167
 msgid "Keywords to include"
 msgstr ""
 
-#: includes/PostFeedChannel.php:187
+#: includes/PostFeedChannel.php:171
 msgid "Input excluded keywords"
 msgstr ""
 
-#: includes/PostFeedChannel.php:188
+#: includes/PostFeedChannel.php:172
 msgid ""
 "Only items that contain this keyword in the title will be retrieved. If you "
 "have more than one keyword, please enter them separated by commas."
 msgstr ""
 
-#: includes/PostFeedChannel.php:192
+#: includes/PostFeedChannel.php:176
 msgid "Keywords to exclude"
 msgstr ""
 
-#: includes/PostFeedChannel.php:196
+#: includes/PostFeedChannel.php:180
 msgid "Input keywords to exclude"
 msgstr ""
 
-#: includes/PostFeedChannel.php:197
+#: includes/PostFeedChannel.php:181
 msgid ""
 "If the title of the item contains this keyword, it will be excluded. If you "
 "have more than one keyword, please enter them separated by commas."
 msgstr ""
 
-#: includes/PostFeedItem.php:51
+#: includes/PostFeedItem.php:43
 msgid "Feed Items"
 msgstr ""
 
-#: includes/PostFeedItem.php:76
+#: includes/PostFeedItem.php:61 includes/PostFeedItem.php:83
+#: includes/PostFeedItem.php:84
+msgid "Feed Item Tag"
+msgstr ""
+
+#: includes/PostFeedItem.php:107
 msgid "Feed Item Details"
 msgstr ""
 
-#: includes/PostFeedItem.php:90 includes/PostFeedItem.php:209
+#: includes/PostFeedItem.php:121 includes/PostFeedItem.php:238
 msgid "Permalink"
 msgstr ""
 
-#: includes/PostFeedItem.php:91
+#: includes/PostFeedItem.php:122
 msgid "Channel"
 msgstr ""
 
-#: includes/PostFeedItem.php:138
+#: includes/PostFeedItem.php:167
 msgid "All channels"
 msgstr ""
 
-#: includes/PostFeedItem.php:181
+#: includes/PostFeedItem.php:210
 msgid "Feed channel id"
 msgstr ""
 
-#: includes/PostFeedItem.php:188
+#: includes/PostFeedItem.php:217
 msgid "Published date"
 msgstr ""
 
-#: includes/PostFeedItem.php:195
+#: includes/PostFeedItem.php:224
 msgid "Updated date"
 msgstr ""
 
-#: includes/PostFeedItem.php:202
+#: includes/PostFeedItem.php:231
 msgid "Title"
 msgstr ""
 
-#: includes/PostFeedItem.php:216
+#: includes/PostFeedItem.php:245
 msgid "Enclosure"
 msgstr ""
 
