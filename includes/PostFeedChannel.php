@@ -33,15 +33,16 @@ class PostFeedChannel extends BasePost {
 	 */
 	public function init() {
 		$args = [
-			'labels'      => [
+			'labels'       => [
 				'name'      => __( 'Feed Channels', 'feed-collector' ),
 				'all_items' => __( 'Feed Channels', 'feed-collector' ),
 				'menu_name' => __( 'Feed Collector', 'feed-collector' ),
 			],
-			'public'      => true,
-			'supports'    => [ 'title', 'thumbnail' ],
-			'has_archive' => true,
-			'menu_icon'   => 'dashicons-rss',
+			'public'       => true,
+			'supports'     => [ 'title', 'thumbnail' ],
+			'has_archive'  => true,
+			'menu_icon'    => 'dashicons-rss',
+			'show_in_rest' => true,
 		];
 
 		/**
@@ -104,7 +105,7 @@ class PostFeedChannel extends BasePost {
 	public function manage_posts_custom_column( $column_name, $post_id ) {
 		switch ( $column_name ) {
 			case 'items' :
-				$args           = [
+				$args  = [
 					'post_type'      => 'fc-feed-item',
 					'posts_per_page' => - 1,
 					'meta_query'     => [
@@ -114,7 +115,7 @@ class PostFeedChannel extends BasePost {
 						],
 					],
 				];
-				$items          = get_posts( $args );
+				$items = get_posts( $args );
 				echo sprintf( '<a href="%s">%d %s</a>', admin_url( 'edit.php?post_type=fc-feed-item&_fc_feed_channel_id=' . $post_id ), count( $items ), __( 'counts', 'feed-collector' ) );
 				break;
 			default:

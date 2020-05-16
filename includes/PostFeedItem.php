@@ -46,6 +46,7 @@ class PostFeedItem extends BasePost {
 			'has_archive'  => true,
 			'menu_icon'    => 'dashicons-rss',
 			'show_in_menu' => 'edit.php?post_type=fc-feed-channel',
+			'show_in_rest' => true,
 		];
 
 		/**
@@ -151,7 +152,7 @@ class PostFeedItem extends BasePost {
 	 * @param $post_type
 	 */
 	public function restrict_manage_posts( $post_type ) {
-		if ( $post_type !== 'fc-feed-item') {
+		if ( $post_type !== 'fc-feed-item' ) {
 			return;
 		}
 
