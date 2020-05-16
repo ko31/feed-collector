@@ -90,7 +90,7 @@ class PostFeedChannel extends BasePost {
 		 */
 		$args = apply_filters( 'fc_category_register_taxonomy_args', $args );
 
-		register_taxonomy( $this->taxonomy, 'fc-feed-channel', $args );
+		register_taxonomy( $this->taxonomy, $this->post_type, $args );
 	}
 
 	/**
