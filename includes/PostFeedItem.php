@@ -59,10 +59,11 @@ class PostFeedItem extends BasePost {
 		register_post_type( 'fc-feed-item', $args );
 
 		$args = [
-			'label'        => __( 'Feed Item Tag', 'feed-collector' ),
-			'hierarchical' => false,
-			'public'       => false,
-			'show_ui'      => true,
+			'label'             => __( 'Feed Item Tag', 'feed-collector' ),
+			'hierarchical'      => false,
+			'public'            => false,
+			'show_ui'           => true,
+			'show_admin_column' => true,
 		];
 
 		/**

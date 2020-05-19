@@ -55,10 +55,11 @@ class PostFeedChannel extends BasePost {
 		register_post_type( 'fc-feed-channel', $args );
 
 		$args = [
-			'label'        => __( 'Feed Channel Category', 'feed-collector' ),
-			'hierarchical' => true,
-			'public'       => false,
-			'show_ui'      => true,
+			'label'             => __( 'Feed Channel Category', 'feed-collector' ),
+			'hierarchical'      => true,
+			'public'            => false,
+			'show_ui'           => true,
+			'show_admin_column' => true,
 		];
 
 		/**
