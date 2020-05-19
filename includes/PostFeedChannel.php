@@ -35,7 +35,6 @@ class PostFeedChannel extends BasePost {
 		$args = [
 			'labels'       => [
 				'name'      => __( 'Feed Channels', 'feed-collector' ),
-				'all_items' => __( 'Feed Channels', 'feed-collector' ),
 				'menu_name' => __( 'Feed Collector', 'feed-collector' ),
 			],
 			'public'       => true,
